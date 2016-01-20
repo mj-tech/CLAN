@@ -1,6 +1,7 @@
 package com.mjtech.clan;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
@@ -32,11 +33,11 @@ public class main extends Activity {
 
 
 
-        findViewById(R.id.button4).setOnClickListener(new RelativeLayout.OnClickListener() {
+        findViewById(R.id.button1).setOnClickListener(new RelativeLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(v.getContext(), setting.class);
-                //startActivity(intent);
+                Intent intent = new Intent(v.getContext(), course.class);
+                startActivity(intent);
             }
         });
     }
