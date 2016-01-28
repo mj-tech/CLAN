@@ -22,7 +22,6 @@ public class main extends Activity {
         setAnimation(findViewById(R.id.button5), 240, 370, 400);
         setAnimation(findViewById(R.id.button6), 300, 370, 500);
 
-        findViewById(R.id.bg).setBackgroundColor(0xFF114477);
         findViewById(R.id.center).getBackground().setColorFilter(0xFF222222, PorterDuff.Mode.ADD);
         findViewById(R.id.button1).getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.ADD);
         findViewById(R.id.button2).getBackground().setColorFilter(0xFFFF6600, PorterDuff.Mode.ADD);
