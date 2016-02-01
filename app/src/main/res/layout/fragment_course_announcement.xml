@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/scrollView"
+    <include layout="@layout/material_view_pager_placeholder"/>
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/announcementList"
+        android:padding="10sp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FUCK YOU"
-                android:id="@+id/textView" />
-        </LinearLayout>
-    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
-
-</RelativeLayout>
+</LinearLayout>

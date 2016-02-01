@@ -32,7 +32,7 @@ public class course extends AppCompatActivity {
 
         setContentView(R.layout.activity_course);
 
-        String token = "1839~QImhwV3SaWPXxEEoZ2rkemDYLip1nz5TYDrRXdnuqDLO2EX3WVm4rqT2VVLsAgnW";
+        String token = ((CLAN)this.getApplication()).TOKEN;
         try {
             URL url = new URL("https://canvas.cityu.edu.hk/api/v1/courses?access_token="+token);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();

@@ -1,8 +1,27 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:textColorPrimary">@android:color/white</item>
+
+        <!-- Toolbar Theme / Apply white arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="actionBarTheme">@style/AppTheme.ActionBarTheme</item>
     </style>
+
+    <style name="AppTheme.ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- White arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
