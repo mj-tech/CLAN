@@ -20,7 +20,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:color="#000"
+                android:textColor="#333"
                 android:singleLine="true"
                 android:text="TITLE"
                 android:textSize="25sp" />
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
-                android:color="#333"
+                android:textColor="#333"
                 android:text="AUTHOR"
                 android:textSize="17sp" />
 
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/title"
-                android:color="#333"
+                android:textColor="#333"
                 android:text="DATE"
                 android:textSize="15sp" />
 
@@ -49,7 +49,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/date"
-                android:color="#666"
+                android:textColor="#666"
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:paddingTop="20sp"

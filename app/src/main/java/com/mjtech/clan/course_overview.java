@@ -1,29 +1,17 @@
 package com.mjtech.clan;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
-import org.json.JSONArray;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class course_overview extends Activity {
 
@@ -33,6 +21,15 @@ public class course_overview extends Activity {
         setContentView(R.layout.activity_course_overview);
 
         MaterialViewPager mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
+
+        mViewPager.getToolbar().setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Log.e("FUCK", "THIS");
+                return true;
+            }
+        });
 
         final LayoutInflater mInflater = getLayoutInflater().from(this);
 
@@ -47,7 +44,7 @@ public class course_overview extends Activity {
         viewList.add(v3);
         viewList.add(v4);
 
-        mViewPager.getViewPager().setAdapter(new ViewPagerAdapter(this,viewList,((CLAN)getApplication()).TOKEN,getIntent().getStringExtra("ID")));
+        mViewPager.getViewPager().setAdapter(new ViewPagerAdapter(this, viewList, ((CLAN) getApplication()).TOKEN, getIntent().getStringExtra("ID")));
         mViewPager.getViewPager().setCurrentItem(0);
 
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
@@ -70,5 +67,13 @@ public class course_overview extends Activity {
             }
         });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.e("Fuck","B");
+        return true;
+    }
+
+
 }
 

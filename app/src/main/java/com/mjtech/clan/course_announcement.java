@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.r0adkll.slidr.Slidr;
+
 public class course_announcement extends AppCompatActivity {
 
     @Override
@@ -14,6 +16,8 @@ public class course_announcement extends AppCompatActivity {
         ((TextView)findViewById(R.id.author)).setText(getIntent().getStringExtra("AUTHOR"));
         ((TextView)findViewById(R.id.date)).setText(getIntent().getStringExtra("DATE"));
         ((TextView)findViewById(R.id.message)).setText(getIntent().getStringExtra("MESSAGE"));
+
+        Slidr.attach(this);
 
     }
 
