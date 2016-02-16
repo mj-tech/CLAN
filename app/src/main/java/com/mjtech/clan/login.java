@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,7 +79,7 @@ public class login extends AppCompatActivity {
         protected Void doInBackground(Void... voided) {
             try {
 
-                URL url = new URL("https://mjtech.cf/api/login.php");
+                URL url = new URL("https://mjtech.cf/api/account/login.php");
                 HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
                 con.setHostnameVerifier(new HostnameVerifier() {
                     public boolean verify(String hostname, SSLSession session) {

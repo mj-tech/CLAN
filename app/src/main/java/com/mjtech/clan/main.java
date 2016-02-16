@@ -67,6 +67,14 @@ public class main extends Activity {
             }
         });
 
+        findViewById(R.id.center).setOnClickListener(new RelativeLayout.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), nfctransfer.class);
+                startActivity(intent);
+            }
+        });
+
         Button lb = (Button) findViewById(R.id.logout);
         lb.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -91,7 +99,7 @@ public class main extends Activity {
     private class performLogout extends AsyncTask<Void, Void, Void> {
         protected Void doInBackground(Void... voided) {
             try {
-                URL url = new URL("https://mjtech.cf/api/logout.php");
+                URL url = new URL("https://mjtech.cf/api/account/logout.php");
                 HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
                 con.setHostnameVerifier(new HostnameVerifier() {
                     public boolean verify(String hostname, SSLSession session) {

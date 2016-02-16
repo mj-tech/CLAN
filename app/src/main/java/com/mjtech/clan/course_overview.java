@@ -26,7 +26,7 @@ public class course_overview extends Activity {
 
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.e("FUCK", "THIS");
+                Log.e("Here", "Test");
                 return true;
             }
         });

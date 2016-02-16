@@ -46,6 +46,7 @@ public class course extends AppCompatActivity {
                 map.put("NAME", courses.getJSONObject(i).getString("name"));
 
                 courseMap.add(map);
+
             }
             ((ListView)findViewById(R.id.courseList)).setAdapter(new SimpleAdapter(this, courseMap, R.layout.row_course, new String[]{"CODE","NAME"}, new int[]{R.id.courseCode,R.id.courseName}));
 
