@@ -26,4 +26,11 @@ dependencies {
         transitive = true
     }
     compile 'com.r0adkll:slidableactivity:2.0.5'
+    compile 'com.google.zxing:android-integration:3.2.1'
+}
+
+repositories {
+    maven {
+        url "http://repo.mycompany.com/maven2/"
+    }
 }

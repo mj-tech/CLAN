@@ -25,12 +25,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
-public class ViewPagerAdapter extends PagerAdapter {
+public class vpa_course extends PagerAdapter {
     ArrayList<HashMap<String, String>> Map = new ArrayList<>();
     private List<View> views;
     private String token, cid;
     private Context context;
-    public ViewPagerAdapter(Context context, List<View> views, String token, String cid) {
+    public vpa_course(Context context, List<View> views, String token, String cid) {
         this.context = context;
         this.views = views;
         this.token = token;

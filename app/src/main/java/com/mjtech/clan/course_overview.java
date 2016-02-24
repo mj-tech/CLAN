@@ -22,15 +22,6 @@ public class course_overview extends Activity {
 
         MaterialViewPager mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
-        mViewPager.getToolbar().setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Log.e("Here", "Test");
-                return true;
-            }
-        });
-
         final LayoutInflater mInflater = getLayoutInflater().from(this);
 
         View v1 = mInflater.inflate(R.layout.fragment_course_announcement, null);
@@ -44,7 +35,7 @@ public class course_overview extends Activity {
         viewList.add(v3);
         viewList.add(v4);
 
-        mViewPager.getViewPager().setAdapter(new ViewPagerAdapter(this, viewList, ((CLAN) getApplication()).TOKEN, getIntent().getStringExtra("ID")));
+        mViewPager.getViewPager().setAdapter(new vpa_course(this, viewList, ((CLAN) getApplication()).TOKEN, getIntent().getStringExtra("ID")));
         mViewPager.getViewPager().setCurrentItem(0);
 
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
@@ -66,12 +57,6 @@ public class course_overview extends Activity {
                 return null;
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Log.e("Fuck","B");
-        return true;
     }
 
 

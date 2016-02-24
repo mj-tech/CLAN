@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include layout="@layout/material_view_pager_placeholder"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="#3366FF"
+        android:id="@+id/borrow">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:paddingLeft="15sp"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:text="Borrow Book Now"/>
+
+    </android.support.v7.widget.CardView>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bookList"
+        android:padding="10sp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10sp"/>
+
+</LinearLayout>

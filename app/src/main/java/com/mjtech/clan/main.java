@@ -39,8 +39,6 @@ public class main extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ((TextView) findViewById(R.id.welcome)).setText("Welcome back, " + ((CLAN) getApplication()).FULLNAME + "!");
-
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int dis = displaymetrics.widthPixels / 3; //370
 
@@ -67,6 +65,14 @@ public class main extends Activity {
             }
         });
 
+        findViewById(R.id.button2).setOnClickListener(new RelativeLayout.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), book.class);
+                startActivity(intent);
+            }
+        });
+
         findViewById(R.id.center).setOnClickListener(new RelativeLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,8 +81,7 @@ public class main extends Activity {
             }
         });
 
-        Button lb = (Button) findViewById(R.id.logout);
-        lb.setOnClickListener(new Button.OnClickListener() {
+        findViewById(R.id.button4).setOnClickListener(new RelativeLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new performLogout().execute();
