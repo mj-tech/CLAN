@@ -1,21 +1,14 @@
 package com.mjtech.clan;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.florent37.materialviewpager.MaterialViewPager;
-import com.github.florent37.materialviewpager.header.HeaderDesign;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+import com.r0adkll.slidr.Slidr;
 
 import org.json.JSONObject;
 
@@ -26,66 +19,39 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
-public class book extends Activity {
+public class book_details extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book);
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        refresh(0);
-    }
+        setContentView(R.layout.activity_book_details);
 
-    private void refresh(int at) {
-        MaterialViewPager mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
-        final LayoutInflater mInflater = getLayoutInflater().from(this);
-
-        View v = mInflater.inflate(R.layout.fragment_book_borrowed, null);
-
-        ArrayList<View> viewList = new ArrayList<>();
-        viewList.add(v);
-
-        mViewPager.getViewPager().setAdapter(new vpa_book(this, viewList));
-        mViewPager.getViewPager().setCurrentItem(at);
-
-        mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
-
-        mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
+        ((TextView)findViewById(R.id.title)).setText(getIntent().getStringExtra("TITLE"));
+        ((TextView)findViewById(R.id.expire)).setText("Expire at: " + getIntent().getStringExtra("EXPIRE"));
+        findViewById(R.id.renew).setOnClickListener(new View.OnClickListener() {
             @Override
-            public HeaderDesign getHeaderDesign(int page) {
-                return HeaderDesign.fromColorResAndUrl(
-                        R.color.blue,
-                        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS-eryu8mPuRlGRYt5AdLIekPjy3KTOgQHzEsU-dk7r2nyXbOc0");
-
+            public void onClick(View v) {
+                new renewbook().execute(getIntent().getStringExtra("ID"));
             }
         });
+
+        Slidr.attach(this);
+
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (scanningResult != null) {
-            new borrowBook().execute(scanningResult.getContents());
-        }
-    }
-
-    private class borrowBook extends AsyncTask<String, Void, Void> {
+    private class renewbook extends AsyncTask<String, Void, Void> {
         JSONObject obj;
 
         protected Void doInBackground(String... pms) {
             try {
 
-                URL url = new URL("https://mjtech.cf/api/book/borrow.php");
+                URL url = new URL("https://mjtech.cf/api/book/renew.php");
                 HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
                 con.setHostnameVerifier(new HostnameVerifier() {
                     public boolean verify(String hostname, SSLSession session) {
@@ -96,7 +62,7 @@ public class book extends Activity {
                 con.setDoOutput(true);
 
                 Uri.Builder builder = new Uri.Builder().appendQueryParameter("id", pms[0])
-                                                       .appendQueryParameter("session", ((CLAN) getApplication()).SESSION);
+                        .appendQueryParameter("session", ((CLAN) getApplication()).SESSION);
                 String query = builder.build().getEncodedQuery();
 
                 OutputStream os = con.getOutputStream();
@@ -117,13 +83,13 @@ public class book extends Activity {
         protected void onPostExecute(Void voided) {
             try {
                 if (obj.getInt("err") > 0) {
-                    Toast toast = Toast.makeText(getApplicationContext(),obj.getString("errmsg"), Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), obj.getString("errmsg"), Toast.LENGTH_SHORT);
                     toast.show();
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(),"You borrowed a book", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "You renewed this book.", Toast.LENGTH_SHORT);
                     toast.show();
 
-                    refresh(0);
+                    finish();
                 }
             } catch (Exception ignored) {
             }

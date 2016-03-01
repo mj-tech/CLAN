@@ -10,29 +10,28 @@ import com.github.florent37.materialviewpager.header.HeaderDesign;
 
 import java.util.ArrayList;
 
-public class course_overview extends Activity {
+public class wallet extends Activity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_overview);
+        setContentView(R.layout.activity_wallet);
 
         MaterialViewPager mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
         final LayoutInflater mInflater = getLayoutInflater().from(this);
 
-        View v1 = mInflater.inflate(R.layout.fragment_course_announcement, null);
-        View v2 = mInflater.inflate(R.layout.fragment_course_announcement, null);
+        View v1 = mInflater.inflate(R.layout.fragment_wallet_overview, null);
+        View v2 = mInflater.inflate(R.layout.fragment_wallet_transaction, null);
         View v3 = mInflater.inflate(R.layout.fragment_course_announcement, null);
-        View v4 = mInflater.inflate(R.layout.fragment_course_announcement, null);
 
         ArrayList<View> viewList = new ArrayList<>();
         viewList.add(v1);
         viewList.add(v2);
         viewList.add(v3);
-        viewList.add(v4);
 
-        mViewPager.getViewPager().setAdapter(new vpa_course(this, viewList, ((CLAN) getApplication()).TOKEN, getIntent().getStringExtra("ID")));
+        mViewPager.getViewPager().setAdapter(new vpa_wallet(this, viewList));
         mViewPager.getViewPager().setCurrentItem(0);
 
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
@@ -58,4 +57,3 @@ public class course_overview extends Activity {
 
 
 }
-

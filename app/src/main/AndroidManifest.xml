@@ -34,7 +34,11 @@
             android:label="@string/title_activity_course_announcement"
             android:theme="@style/Theme.Slidr.Slidable" />
         <activity android:name=".nfctransfer" />
-        <activity android:name=".book"></activity>
+        <activity android:name=".book" />
+        <activity
+            android:name=".book_details"
+            android:theme="@style/Theme.Slidr.Slidable" />
+        <activity android:name=".wallet"></activity>
     </application>
 
 </manifest>

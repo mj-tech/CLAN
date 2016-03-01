@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
+import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
-import com.google.zxing.integration.android.IntentIntegrator;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,6 +23,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,11 +36,11 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
-public class vpa_book extends PagerAdapter {
+public class vpa_wallet extends PagerAdapter {
     ArrayList<HashMap<String, String>> Map = new ArrayList<>();
     private List<View> views;
     private Context context;
-    public vpa_book(Context context, List<View> views) {
+    public vpa_wallet(Context context, List<View> views) {
         this.context = context;
         this.views = views;
     }
@@ -49,19 +51,39 @@ public class vpa_book extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(final ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, int position) {
+
+
         View TView = views.get(position);
         try {
             if(position==0) {
-                TView.findViewById(R.id.borrow).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        IntentIntegrator scanIntegrator = new IntentIntegrator((Activity) context);
-                        scanIntegrator.initiateScan();
-
+                URL url = new URL("https://mjtech.cf/api/wallet/view.php");
+                HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+                con.setHostnameVerifier(new HostnameVerifier() {
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
                     }
                 });
-                URL url = new URL("https://mjtech.cf/api/book/borrowed.php");
+                con.setRequestMethod("POST");
+                con.setDoOutput(true);
+
+                Uri.Builder builder = new Uri.Builder().appendQueryParameter("session", ((CLAN) ((Activity)context).getApplication()).SESSION);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = con.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                JSONObject obj = new JSONObject(readStream(con.getInputStream()));
+
+                ((TextView)TView.findViewById(R.id.bal)).setText("$"+obj.getString("balance"));
+            }
+            if(position==1) {
+                URL url = new URL("https://mjtech.cf/api/wallet/transaction.php");
                 HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
                 con.setHostnameVerifier(new HostnameVerifier() {
                     public boolean verify(String hostname, SSLSession session) {
@@ -82,30 +104,19 @@ public class vpa_book extends PagerAdapter {
                 writer.close();
                 os.close();
                 JSONObject obj = new JSONObject(readStream(con.getInputStream()));
-                JSONArray books = obj.getJSONArray("borrowed");
-                for(int i = 0; i < books.length(); i++) {
+                JSONArray rec = obj.getJSONArray("record");
+                for(int i = 0; i < rec.length(); i++) {
                     HashMap<String, String> map = new HashMap<>();
 
-                    map.put("ID", books.getJSONObject(i).getString("id"));
-                    map.put("TITLE", books.getJSONObject(i).getString("name"));
+                    map.put("SHOP", rec.getJSONObject(i).getString("shop"));
                     SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
                     fdate.setTimeZone(TimeZone.getTimeZone("UTC"));
-                    Date date = fdate.parse(books.getJSONObject(i).getString("expire"));
-                    map.put("EXPIRE", "Expire at "+new SimpleDateFormat("yyyy-MM-dd").format(date));
+                    Date date = fdate.parse(rec.getJSONObject(i).getString("time"));
+                    map.put("MSG", "$"+rec.getJSONObject(i).getString("price")+" | At "+new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date));
 
                     Map.add(map);
                 }
-                ((ListView)TView.findViewById(R.id.bookList)).setAdapter(new SimpleAdapter(TView.getContext(), Map, R.layout.row_announcement, new String[]{"TITLE", "EXPIRE"}, new int[]{R.id.title, R.id.msg}));
-                ((ListView)TView.findViewById(R.id.bookList)).setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                    public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
-                        Intent intent = new Intent(context, book_details.class);
-                        intent.putExtra("ID", Map.get(position).get("ID"));
-                        intent.putExtra("TITLE", Map.get(position).get("TITLE"));
-                        intent.putExtra("EXPIRE", Map.get(position).get("EXPIRE"));
-                        context.startActivity(intent);
-                    }
-                });
+                ((ListView)TView.findViewById(R.id.transactionList)).setAdapter(new SimpleAdapter(TView.getContext(), Map, R.layout.row_announcement, new String[]{"SHOP", "MSG"}, new int[]{R.id.title, R.id.msg}));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -126,7 +137,15 @@ public class vpa_book extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "My Books";
+        switch (position % 3) {
+            case 0:
+                return "Ovewview";
+            case 1:
+                return "Transactions";
+            case 2:
+                return "e-Shop";
+        }
+        return "";
     }
 
     public String readStream(InputStream in) throws Exception {

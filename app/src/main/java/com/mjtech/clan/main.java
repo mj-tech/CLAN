@@ -73,6 +73,14 @@ public class main extends Activity {
             }
         });
 
+        findViewById(R.id.button3).setOnClickListener(new RelativeLayout.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), wallet.class);
+                startActivity(intent);
+            }
+        });
+
         findViewById(R.id.center).setOnClickListener(new RelativeLayout.OnClickListener() {
             @Override
             public void onClick(View v) {

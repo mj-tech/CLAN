@@ -16,7 +16,6 @@ public class course_announcement extends AppCompatActivity {
         ((TextView)findViewById(R.id.author)).setText(getIntent().getStringExtra("AUTHOR"));
         ((TextView)findViewById(R.id.date)).setText(getIntent().getStringExtra("DATE"));
         ((TextView)findViewById(R.id.message)).setText(getIntent().getStringExtra("MESSAGE"));
-
         Slidr.attach(this);
 
     }
