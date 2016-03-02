@@ -40,7 +40,7 @@ public class main extends Activity {
         setContentView(R.layout.activity_main);
 
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int dis = displaymetrics.widthPixels / 3; //370
+        int dis = Math.min(displaymetrics.widthPixels,displaymetrics.heightPixels) / 3; //370
 
         setAnimation(findViewById(R.id.button1), 0, dis, 0);
         setAnimation(findViewById(R.id.button2), 60, dis, 100);

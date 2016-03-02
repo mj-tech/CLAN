@@ -88,8 +88,7 @@ public class vpa_book extends PagerAdapter {
 
                     map.put("ID", books.getJSONObject(i).getString("id"));
                     map.put("TITLE", books.getJSONObject(i).getString("name"));
-                    SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-                    fdate.setTimeZone(TimeZone.getTimeZone("UTC"));
+                    SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                     Date date = fdate.parse(books.getJSONObject(i).getString("expire"));
                     map.put("EXPIRE", "Expire at "+new SimpleDateFormat("yyyy-MM-dd").format(date));
 

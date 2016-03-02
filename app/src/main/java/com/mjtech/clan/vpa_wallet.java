@@ -105,18 +105,38 @@ public class vpa_wallet extends PagerAdapter {
                 os.close();
                 JSONObject obj = new JSONObject(readStream(con.getInputStream()));
                 JSONArray rec = obj.getJSONArray("record");
+                final ArrayList<Double> pricelist = new ArrayList<>();
                 for(int i = 0; i < rec.length(); i++) {
                     HashMap<String, String> map = new HashMap<>();
 
                     map.put("SHOP", rec.getJSONObject(i).getString("shop"));
-                    SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-                    fdate.setTimeZone(TimeZone.getTimeZone("UTC"));
+                    SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                     Date date = fdate.parse(rec.getJSONObject(i).getString("time"));
-                    map.put("MSG", "$"+rec.getJSONObject(i).getString("price")+" | At "+new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date));
+                    double price = Double.parseDouble(rec.getJSONObject(i).getString("price"));
+                    pricelist.add(price);
+                    String priceString;
+                    if(price>0) {
+                        priceString = "+$" + Math.abs(price);
+                    } else {
+                        priceString = "-$" + Math.abs(price);
+                    }
+                    map.put("PRICE", priceString);
+                    map.put("DATE", "At "+new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date));
 
                     Map.add(map);
                 }
-                ((ListView)TView.findViewById(R.id.transactionList)).setAdapter(new SimpleAdapter(TView.getContext(), Map, R.layout.row_announcement, new String[]{"SHOP", "MSG"}, new int[]{R.id.title, R.id.msg}));
+                ((ListView)TView.findViewById(R.id.transactionList)).setAdapter(new SimpleAdapter(TView.getContext(), Map, R.layout.row_transaction, new String[]{"SHOP", "PRICE", "DATE"}, new int[]{R.id.itemname, R.id.itemprice, R.id.itemtime}) {
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        if((pricelist.get(position))>0) {
+                            ((TextView) view.findViewById(R.id.itemprice)).setTextColor(0xFF009900);
+                        } else {
+                            ((TextView) view.findViewById(R.id.itemprice)).setTextColor(0xFFFF0000);
+                        }
+                        return view;
+                    }
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -157,5 +177,6 @@ public class vpa_wallet extends PagerAdapter {
         }
         return result.toString();
     }
+
 }
 
