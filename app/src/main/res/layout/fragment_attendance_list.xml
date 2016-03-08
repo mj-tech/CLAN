@@ -9,7 +9,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/courseList"
+        android:id="@+id/attendanceList"
         android:padding="10sp"
         android:divider="@android:color/transparent"
         android:dividerHeight="10sp"/>

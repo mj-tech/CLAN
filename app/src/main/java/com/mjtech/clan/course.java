@@ -1,15 +1,20 @@
 package com.mjtech.clan;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.github.florent37.materialviewpager.header.HeaderDesign;
 
 import org.json.JSONArray;
 
@@ -21,47 +26,47 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class course extends AppCompatActivity {
+public class course extends Activity {
 
-    ArrayList<HashMap<String, String>> courseMap = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build(); StrictMode.setThreadPolicy(policy);
-
         setContentView(R.layout.activity_course);
 
-        String token = ((CLAN)this.getApplication()).TOKEN;
-        try {
-            URL url = new URL("https://canvas.cityu.edu.hk/api/v1/courses?access_token="+token);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        MaterialViewPager mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
-            JSONArray courses = new JSONArray(readStream(con.getInputStream()));
-            for(int i = 0; i < courses.length(); i++) {
-                HashMap<String, String> map = new HashMap<>();
+        final LayoutInflater mInflater = getLayoutInflater().from(this);
 
-                map.put("ID", courses.getJSONObject(i).getString("id"));
-                map.put("CODE", courses.getJSONObject(i).getString("course_code"));
-                map.put("NAME", courses.getJSONObject(i).getString("name"));
+        View v1 = mInflater.inflate(R.layout.fragment_course_list, null);
+        View v2 = mInflater.inflate(R.layout.fragment_attendance_list, null);
 
-                courseMap.add(map);
+        ArrayList<View> viewList = new ArrayList<>();
+        viewList.add(v1);
+        viewList.add(v2);
 
-            }
-            ((ListView)findViewById(R.id.courseList)).setAdapter(new SimpleAdapter(this, courseMap, R.layout.row_course, new String[]{"CODE","NAME"}, new int[]{R.id.courseCode,R.id.courseName}));
+        mViewPager.getViewPager().setAdapter(new vpa_course_list(this, viewList));
 
-            ((ListView)findViewById(R.id.courseList)).setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
 
-                public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
-
-                    Intent intent = new Intent(view.getContext(), course_overview.class);
-                    intent.putExtra("ID",courseMap.get(position).get("ID"));
-                    startActivity(intent);
+        mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
+            @Override
+            public HeaderDesign getHeaderDesign(int page) {
+                switch (page) {
+                    case 0:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.green,
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnJ2F6y3hTArCyLk3XlsmxniWffXSJVNZmKSPGZy_XB5U4y8FH");
+                    case 1:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.blue,
+                                "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS-eryu8mPuRlGRYt5AdLIekPjy3KTOgQHzEsU-dk7r2nyXbOc0");
 
                 }
-            });
-        } catch (Exception ignored) {
-        }
+                return null;
+            }
+        });
+
     }
 
     public String readStream(InputStream in) throws Exception {

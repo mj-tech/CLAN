@@ -38,7 +38,8 @@
         <activity
             android:name=".book_details"
             android:theme="@style/Theme.Slidr.Slidable" />
-        <activity android:name=".wallet"></activity>
+        <activity android:name=".wallet" />
+        <activity android:name=".attendance"></activity>
     </application>
 
 </manifest>
