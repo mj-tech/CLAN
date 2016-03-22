@@ -27,6 +27,7 @@ import java.util.TimeZone;
 
 public class vpa_course extends PagerAdapter {
     ArrayList<HashMap<String, String>> Map = new ArrayList<>();
+    ArrayList<HashMap<String, String>> Map2 = new ArrayList<>();
     private List<View> views;
     private String token, cid;
     private Context context;
@@ -79,6 +80,24 @@ public class vpa_course extends PagerAdapter {
                         context.startActivity(intent);
                     }
                 });
+            } else if(position==1) {
+                URL url = new URL("https://canvas.cityu.edu.hk/api/v1/courses/"+cid+"/assignments?access_token="+token);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+                JSONArray courses = new JSONArray(readStream(con.getInputStream()));
+                for(int i = 0; i < courses.length(); i++) {
+                    HashMap<String, String> map = new HashMap<>();
+
+                    map.put("TITLE", courses.getJSONObject(i).getString("name"));
+                    SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                    fdate.setTimeZone(TimeZone.getTimeZone("UTC"));
+                    Date date = fdate.parse(courses.getJSONObject(i).getString("due_at"));
+                    map.put("DATE", new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date));
+
+                    Map2.add(map);
+
+                }
+                ((ListView)TView.findViewById(R.id.assignmentList)).setAdapter(new SimpleAdapter(TView.getContext(), Map2, R.layout.row_announcement, new String[]{"TITLE", "DATE"}, new int[]{R.id.title, R.id.msg}));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,15 +118,11 @@ public class vpa_course extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position % 4) {
+        switch (position % 2) {
             case 0:
                 return "Announcement";
             case 1:
-                return "Actualités";
-            case 2:
-                return "Professionnel";
-            case 3:
-                return "Divertissement";
+                return "Assignment";
         }
         return "";
     }

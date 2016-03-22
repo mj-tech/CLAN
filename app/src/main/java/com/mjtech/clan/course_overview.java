@@ -22,15 +22,11 @@ public class course_overview extends Activity {
         final LayoutInflater mInflater = getLayoutInflater().from(this);
 
         View v1 = mInflater.inflate(R.layout.fragment_course_announcement, null);
-        View v2 = mInflater.inflate(R.layout.fragment_course_announcement, null);
-        View v3 = mInflater.inflate(R.layout.fragment_course_announcement, null);
-        View v4 = mInflater.inflate(R.layout.fragment_course_announcement, null);
+        View v2 = mInflater.inflate(R.layout.fragment_course_assignment, null);
 
         ArrayList<View> viewList = new ArrayList<>();
         viewList.add(v1);
         viewList.add(v2);
-        viewList.add(v3);
-        viewList.add(v4);
 
         mViewPager.getViewPager().setAdapter(new vpa_course(this, viewList, ((CLAN) getApplication()).TOKEN, getIntent().getStringExtra("ID")));
         mViewPager.getViewPager().setCurrentItem(0);
