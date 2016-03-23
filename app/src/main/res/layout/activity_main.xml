@@ -8,8 +8,8 @@
     android:background="@drawable/background">
 
     <RelativeLayout android:background="@drawable/circle"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -19,14 +19,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Course"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/list"
+            android:backgroundTint="#FFF"/>
     </RelativeLayout>
 
     <RelativeLayout android:background="@drawable/circle"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -36,14 +37,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Book"
+            android:background="@drawable/book"
+            android:backgroundTint="#FFF"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
     <RelativeLayout android:background="@drawable/circle"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -53,14 +55,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E-Wallet"
+            android:background="@drawable/payment"
+            android:backgroundTint="#FFF"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
     <RelativeLayout android:background="@drawable/circle"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -70,14 +73,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logout"
+            android:background="@drawable/power"
+            android:backgroundTint="#FFF"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
     <RelativeLayout android:background="@drawable/circle"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -87,24 +91,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Setting"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
-
-    <RelativeLayout android:background="@drawable/circle"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_vertical"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:clickable="true"
-        android:id="@+id/button6">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Event"
+            android:background="@drawable/help"
+            android:backgroundTint="#FFF"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
@@ -120,7 +108,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CLAN"
+            android:background="@drawable/school"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>

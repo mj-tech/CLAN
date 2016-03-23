@@ -1,10 +1,12 @@
 package com.mjtech.clan;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,6 +51,9 @@ public class course extends Activity {
 
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
 
+        Toolbar toolbar = mViewPager.getToolbar();
+        toolbar.setVisibility(View.GONE);
+
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
             public HeaderDesign getHeaderDesign(int page) {
@@ -56,11 +61,11 @@ public class course extends Activity {
                     case 0:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.green,
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnJ2F6y3hTArCyLk3XlsmxniWffXSJVNZmKSPGZy_XB5U4y8FH");
+                                "http://img.sc.chinaz.com/upload/2015/09/01//2015090117073967.jpg");
                     case 1:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.blue,
-                                "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS-eryu8mPuRlGRYt5AdLIekPjy3KTOgQHzEsU-dk7r2nyXbOc0");
+                                "http://img.sc.chinaz.com/upload/2015/09/01//2015090117074871.jpg");
 
                 }
                 return null;

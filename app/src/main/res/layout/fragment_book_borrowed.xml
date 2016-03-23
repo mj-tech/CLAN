@@ -14,7 +14,7 @@
         android:id="@+id/borrow">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="30sp"
             android:layout_margin="10sp"
             android:paddingLeft="15sp"
             android:textSize="20sp"

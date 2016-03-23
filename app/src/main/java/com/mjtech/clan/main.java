@@ -43,19 +43,17 @@ public class main extends Activity {
         int dis = Math.min(displaymetrics.widthPixels,displaymetrics.heightPixels) / 3; //370
 
         setAnimation(findViewById(R.id.button1), 0, dis, 0);
-        setAnimation(findViewById(R.id.button2), 60, dis, 100);
-        setAnimation(findViewById(R.id.button3), 120, dis, 200);
-        setAnimation(findViewById(R.id.button4), 180, dis, 300);
-        setAnimation(findViewById(R.id.button5), 240, dis, 400);
-        setAnimation(findViewById(R.id.button6), 300, dis, 500);
+        setAnimation(findViewById(R.id.button2), 72, dis, 100);
+        setAnimation(findViewById(R.id.button3), 144, dis, 200);
+        setAnimation(findViewById(R.id.button4), 216, dis, 300);
+        setAnimation(findViewById(R.id.button5), 288, dis, 400);
 
-        findViewById(R.id.center).getBackground().setColorFilter(0xFF222222, PorterDuff.Mode.ADD);
-        findViewById(R.id.button1).getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.ADD);
-        findViewById(R.id.button2).getBackground().setColorFilter(0xFFFF6600, PorterDuff.Mode.ADD);
-        findViewById(R.id.button3).getBackground().setColorFilter(0xFFCC9900, PorterDuff.Mode.ADD);
-        findViewById(R.id.button4).getBackground().setColorFilter(0xFF006600, PorterDuff.Mode.ADD);
-        findViewById(R.id.button5).getBackground().setColorFilter(0xFF0033FF, PorterDuff.Mode.ADD);
-        findViewById(R.id.button6).getBackground().setColorFilter(0xFF6600CC, PorterDuff.Mode.ADD);
+        findViewById(R.id.center).getBackground().setColorFilter(0xFFCCCCCC, PorterDuff.Mode.ADD);
+        findViewById(R.id.button1).getBackground().setColorFilter(0xFF006600, PorterDuff.Mode.ADD);
+        findViewById(R.id.button2).getBackground().setColorFilter(0xFF0066CC, PorterDuff.Mode.ADD);
+        findViewById(R.id.button3).getBackground().setColorFilter(0xFF9933FF, PorterDuff.Mode.ADD);
+        findViewById(R.id.button4).getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.ADD);
+        findViewById(R.id.button5).getBackground().setColorFilter(0xFFCC9900, PorterDuff.Mode.ADD);
 
         findViewById(R.id.button1).setOnClickListener(new RelativeLayout.OnClickListener() {
             @Override

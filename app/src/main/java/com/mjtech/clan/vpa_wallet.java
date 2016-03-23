@@ -157,13 +157,11 @@ public class vpa_wallet extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position % 3) {
+        switch (position % 2) {
             case 0:
                 return "Ovewview";
             case 1:
                 return "Transactions";
-            case 2:
-                return "e-Shop";
         }
         return "";
     }

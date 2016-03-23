@@ -1,5 +1,6 @@
 package com.mjtech.clan;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.nfc.NdefMessage;
@@ -27,7 +28,7 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
-public class nfctransfer extends AppCompatActivity {
+public class nfctransfer extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

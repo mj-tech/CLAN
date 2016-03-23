@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +60,9 @@ public class book extends Activity {
         mViewPager.getViewPager().setAdapter(new vpa_book(this, viewList));
         mViewPager.getViewPager().setCurrentItem(at);
 
+        Toolbar toolbar = mViewPager.getToolbar();
+        toolbar.setVisibility(View.GONE);
+
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
 
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
@@ -66,7 +70,7 @@ public class book extends Activity {
             public HeaderDesign getHeaderDesign(int page) {
                 return HeaderDesign.fromColorResAndUrl(
                         R.color.blue,
-                        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS-eryu8mPuRlGRYt5AdLIekPjy3KTOgQHzEsU-dk7r2nyXbOc0");
+                        "http://img.sc.chinaz.com/upload/2015/09/01//2015090117073600.jpg");
 
             }
         });

@@ -2,6 +2,7 @@ package com.mjtech.clan;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -24,15 +25,16 @@ public class wallet extends Activity {
 
         View v1 = mInflater.inflate(R.layout.fragment_wallet_overview, null);
         View v2 = mInflater.inflate(R.layout.fragment_wallet_transaction, null);
-        View v3 = mInflater.inflate(R.layout.fragment_course_announcement, null);
 
         ArrayList<View> viewList = new ArrayList<>();
         viewList.add(v1);
         viewList.add(v2);
-        viewList.add(v3);
 
         mViewPager.getViewPager().setAdapter(new vpa_wallet(this, viewList));
         mViewPager.getViewPager().setCurrentItem(0);
+
+        Toolbar toolbar = mViewPager.getToolbar();
+        toolbar.setVisibility(View.GONE);
 
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
 
@@ -43,11 +45,11 @@ public class wallet extends Activity {
                     case 0:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.green,
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnJ2F6y3hTArCyLk3XlsmxniWffXSJVNZmKSPGZy_XB5U4y8FH");
+                                "http://img.sc.chinaz.com/upload/2015/09/01//2015090117075134.jpg");
                     case 1:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.blue,
-                                "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS-eryu8mPuRlGRYt5AdLIekPjy3KTOgQHzEsU-dk7r2nyXbOc0");
+                                "http://img.sc.chinaz.com/upload/2015/09/01//2015090117073165.jpg");
 
                 }
                 return null;
