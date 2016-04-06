@@ -93,6 +93,14 @@ public class main extends Activity {
                 new performLogout().execute();
             }
         });
+
+        findViewById(R.id.button5).setOnClickListener(new RelativeLayout.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), about.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void setAnimation(View target, int degree, int distance, int delay) {

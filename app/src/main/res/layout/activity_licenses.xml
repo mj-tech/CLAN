@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10sp">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        card_view:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15sp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333"
+                android:text='##### MaterialViewPager #####
+\n
+\nCopyright 2015 florent37, Inc.
+\n
+\nLicensed under the Apache License, Version 2.0 (the "License");
+\nyou may not use this file except in compliance with the License.
+\nYou may obtain a copy of the License at
+\n
+\nhttp://www.apache.org/licenses/LICENSE-2.0
+\n
+\nUnless required by applicable law or agreed to in writing,
+\nsoftware distributed under the License is distributed on an
+\n"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+\nKIND, either express or implied. See the License for the specific
+\nlanguage governing permissions and limitations under the License.
+\n
+\n
+\n##### Slidr #####
+\n
+\nCopyright (c) 2014 Drew Heavner
+\n
+\nLicensed under the Apache License, Version 2.0 (the "License");
+\nyou may not use this file except in compliance with the License.
+\nYou may obtain a copy of the License at
+\n
+\nhttp://www.apache.org/licenses/LICENSE-2.0
+\n
+\nUnless required by applicable law or agreed to in writing,
+\nsoftware distributed under the License is distributed on an
+\n"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+\nKIND, either express or implied. See the License for the specific
+\nlanguage governing permissions and limitations under the License.
+'
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</ScrollView>

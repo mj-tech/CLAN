@@ -39,7 +39,10 @@
             android:name=".book_details"
             android:theme="@style/Theme.Slidr.Slidable" />
         <activity android:name=".wallet" />
-        <activity android:name=".attendance"></activity>
+        <activity android:name=".attendance" />
+        <activity android:name=".about" />
+        <activity android:name=".licenses"
+                  android:theme="@style/Theme.Slidr.Slidable"></activity>
     </application>
 
 </manifest>
